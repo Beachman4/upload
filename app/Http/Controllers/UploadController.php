@@ -29,11 +29,12 @@ class UploadController extends Controller
     }
     public function postUpload(Request $request)
     {
-        $apiKey = $request->input('apiKey');
+        var_dump($request->all());
+        $apiKey = $request->header('apiKey');
         $user = $this->user->authorize($apiKey);
         $file = $request->file('file');
         $file = $this->uploader->uploadFile($file, $user);
-        echo $_SERVER['HTTP_HOST'] . '/files/' . $file->name;
+        echo "1,".$_SERVER['HTTP_HOST'] . '/files/' . $file->name;
 
     }
 

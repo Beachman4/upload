@@ -13,9 +13,8 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::group(['middleware' => ['auth:api']], function() {
+Route::post('/login', 'UploadController@login');
+Route::group(['middleware' => ['auth:api', 'App\Middleware\ApiToken']], function() {
     Route::post('/upload', 'UploadController@postUpload');
-
-    Route::post('/login', 'UploadController@login');
 });
 
